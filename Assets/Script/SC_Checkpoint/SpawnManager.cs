@@ -37,7 +37,7 @@ public class SpawnManager : MonoBehaviour
 
         var rb = player.GetComponent<Rigidbody2D>();
         if (rb != null)
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
 
         Debug.Log("Respawn player at: " + spawnPoint);
     }

@@ -47,7 +47,7 @@ public class SimpleDeathTrap : MonoBehaviour
 
         var rb = player.GetComponent<Rigidbody2D>();
         if (rb != null)
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
 
         if (deathUI != null)
             deathUI.SetActive(true);
