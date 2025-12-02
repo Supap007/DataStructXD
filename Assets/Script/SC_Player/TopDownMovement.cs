@@ -1,27 +1,35 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class TopDownMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float speed = 3f;
 
-    Rigidbody2D rb;
-    Vector2 input;
+    private Rigidbody2D rb;
+    private Vector2 input;
 
-    void Start()
+    // ให้ PlayerInteraction ใช้อ่านทิศทางล่าสุด
+    public Vector2 LastMoveDirection { get; private set; } = Vector2.down;
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        // รับ Input แนวตั้งแนวนอน
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
+
+        // ถ้ามีการกดปุ่มเดิน ให้จำทิศไว้
+        if (input.sqrMagnitude > 0.01f)
+        {
+            LastMoveDirection = input.normalized;
+        }
     }
 
     void FixedUpdate()
     {
-        // เคลื่อนที่ในโลก 2D
-        rb.MovePosition(rb.position + input.normalized * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + input * speed * Time.fixedDeltaTime);
     }
 }

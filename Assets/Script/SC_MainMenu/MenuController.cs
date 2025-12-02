@@ -9,7 +9,7 @@ public class MenuController : MonoBehaviour
     // เรียกจากปุ่ม Start
     public void StartGame()
     {
-        SceneManager.LoadScene("Main_Game");
+        SceneManager.LoadScene("Map1");
     }
 
     // เรียกจากปุ่ม Exit
